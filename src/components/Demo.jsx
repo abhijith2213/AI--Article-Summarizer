@@ -21,6 +21,12 @@ const Demo = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // checking the url is already in history?
+    const existingArticle = allArticles.find((item) => item.url === article.url);
+
+    if (existingArticle) return setArticle(existingArticle);
+
     const { data } = await getSummary({ articleUrl: article.url });
 
     if (data?.summary) {
